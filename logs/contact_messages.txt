@@ -1,0 +1,15 @@
+[2026-06-15T20:48:49.757Z] FROM: Test Sender <test@example.com>
+MESSAGE:
+Hello Milind, this is a test message to verify the email contact form fallback works.
+--------------------------------------------------
+
+[2026-06-15T20:49:56.988Z] FROM: njub <ANSHVERMA24112005@GMAIL.COM>
+MESSAGE:
+hi
+--------------------------------------------------
+
+[2026-06-17T16:49:54.966Z] FROM: kritka <kritikaverma@gmail.com>
+MESSAGE:
+hey i hav a  related to making spmething like a that can detect the people in the cctv camera as our office is at a sote where theivery is most common bsically people of rural area so the cmera should be like whenevr a prson arives the red line basically the area near the door it makes a alarming sound so that we can
+--------------------------------------------------
+
