@@ -65,7 +65,7 @@ A bespoke, high-performance personal portfolio website for **Milind Verma**. Thi
 ### 1. Clone & Install Dependencies
 
 ```bash
-git clone https://github.com/Milindverma24/smart-surveillance-dashboard.git TheCybersage
+git clone https://github.com/Milindverma24/buildwithmilind-portfolio.git TheCybersage
 cd TheCybersage
 npm install
 ```
