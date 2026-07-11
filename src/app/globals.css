@@ -80,3 +80,13 @@ input, textarea {
   cursor: text !important;
 }
 
+/* ── Hero background image positioning ────────────────────────────────────── */
+.hero-bg-image {
+  object-position: 63% 25% !important;
+}
+@media (min-width: 768px) {
+  .hero-bg-image {
+    object-position: 72% 25% !important;
+  }
+}
+

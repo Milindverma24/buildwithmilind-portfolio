@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState, useCallback } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 type CursorVariant = 'default' | 'link' | 'view' | 'drag' | 'hire' | 'ask' | 'text';
@@ -62,17 +62,20 @@ export function CustomCursor() {
 
   useEffect(() => { variantRef.current = variant; }, [variant]);
 
-  // RAF loop: only lerps ring position — no React involvement at all
-  const tick = useCallback(() => {
-    const lag = variantRef.current === 'default' ? 0.095 : 0.075;
-    ringPos.current.x += (mouse.current.x - ringPos.current.x) * lag;
-    ringPos.current.y += (mouse.current.y - ringPos.current.y) * lag;
-    if (ringWrapRef.current) {
-      const scale = clickingRef.current ? 0.86 : 1;
-      ringWrapRef.current.style.transform =
-        `translate3d(${ringPos.current.x}px,${ringPos.current.y}px,0) translate(-50%,-50%) scale(${scale})`;
-    }
-    rafRef.current = requestAnimationFrame(tick);
+  const tickRef = useRef<() => void>(null!);
+
+  useEffect(() => {
+    tickRef.current = () => {
+      const lag = variantRef.current === 'default' ? 0.095 : 0.075;
+      ringPos.current.x += (mouse.current.x - ringPos.current.x) * lag;
+      ringPos.current.y += (mouse.current.y - ringPos.current.y) * lag;
+      if (ringWrapRef.current) {
+        const scale = clickingRef.current ? 0.86 : 1;
+        ringWrapRef.current.style.transform =
+          `translate3d(${ringPos.current.x}px,${ringPos.current.y}px,0) translate(-50%,-50%) scale(${scale})`;
+      }
+      rafRef.current = requestAnimationFrame(tickRef.current);
+    };
   }, []);
 
   useEffect(() => {
@@ -80,8 +83,10 @@ export function CustomCursor() {
     if (window.matchMedia('(pointer: coarse)').matches) return;
     if (window.innerWidth < 768) return;
 
-    setMounted(true);
-    rafRef.current = requestAnimationFrame(tick);
+    const t = setTimeout(() => {
+      setMounted(true);
+    }, 0);
+    rafRef.current = requestAnimationFrame(tickRef.current);
 
     // ── Hot path: position only, zero React state updates ─────────────────
     const onMove = (e: MouseEvent) => {
@@ -140,6 +145,7 @@ export function CustomCursor() {
     document.addEventListener('mouseenter', show);
 
     return () => {
+      clearTimeout(t);
       cancelAnimationFrame(rafRef.current);
       document.removeEventListener('mousemove',  onMove);
       document.removeEventListener('mouseover',  onOver);
@@ -148,7 +154,7 @@ export function CustomCursor() {
       document.removeEventListener('mouseleave', hide);
       document.removeEventListener('mouseenter', show);
     };
-  }, [tick]);
+  }, []);
 
   if (!mounted) return null;
 

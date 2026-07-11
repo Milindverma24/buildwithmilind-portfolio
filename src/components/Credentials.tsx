@@ -489,7 +489,7 @@ export function Credentials() {
   const sectionInView = useInView(sectionRef, { once: true, margin: '-12%' });
   const resumeInView  = useInView(resumeRef,  { once: true, margin: '-8%'  });
   const [hoveredCert, setHoveredCert] = useState<number | null>(null);
-  const floatItems = useMemo(buildFloatItems, []);
+  const floatItems = useMemo(() => buildFloatItems(), []);
 
   useEffect(() => {
     if (!sectionRef.current || !lineRef.current) return;
@@ -742,7 +742,7 @@ export function Credentials() {
               animate={resumeInView ? { opacity: 1, x: 0 } : {}}
               transition={{ delay: 0.5, duration: 0.6, ease: EASE }}
             >
-              <MagneticBtn href="/resume/Milind_Verma (1).pdf" />
+              <MagneticBtn href="/resume/Resume_Milind_Verma.pdf" />
             </motion.div>
           </div>
 

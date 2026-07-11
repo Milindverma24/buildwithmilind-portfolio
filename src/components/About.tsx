@@ -4,8 +4,6 @@ import { useEffect, useRef, useState } from 'react';
 import { motion, useInView, useMotionValue, animate } from 'framer-motion';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import Image from 'next/image';
-
 gsap.registerPlugin(ScrollTrigger);
 
 const STATS = [

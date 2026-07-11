@@ -40,7 +40,7 @@ export default function Image() {
 
         {/* Logo */}
         <div style={{ display: 'flex', marginBottom: 'auto' }}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
+
           <img
             src={logoSrc}
             alt="Milind Verma"

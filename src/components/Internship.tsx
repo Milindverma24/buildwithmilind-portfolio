@@ -16,11 +16,13 @@ const INTERNSHIPS = [
     company: 'India Glycols Limited (IGL)',
     type: 'Internship · On-site',
     bullets: [
-      'Developed and optimized internal web applications to streamline industrial operations and monitoring.',
+      'Developed and optimized an Enterprise Visitor Management System to streamline industrial check-ins and security logging.',
       'Designed clean, highly responsive user interfaces using React and modern CSS systems.',
       'Integrated relational databases and optimized queries to handle real-time logging and operational telemetry.',
     ],
-    stack: ['React', 'Node.js', 'SQL', 'CSS'],
+    stack: ['React.js', 'Node.js', 'MongoDB', 'Tailwind CSS', 'SQL'],
+    github: 'https://github.com/Milindverma24/visitor-management',
+    deployed: 'https://visitor-management-iota-nine.vercel.app/',
   },
 ];
 
@@ -162,6 +164,97 @@ function MobileCard({ exp, index }: { exp: (typeof INTERNSHIPS)[0]; index: numbe
             {t}
           </span>
         ))}
+      {/* CTA Buttons */}
+      {('github' in exp && exp.github || 'deployed' in exp && exp.deployed) && (
+        <motion.div
+          style={{ display: 'flex', flexWrap: 'wrap', gap: '0.6rem', marginTop: '1.25rem' }}
+          initial={{ opacity: 0 }}
+          animate={inView ? { opacity: 1 } : {}}
+          transition={{ duration: 0.5, delay: 0.55 }}
+        >
+          {'github' in exp && exp.github && (
+            <a
+              href={exp.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.4rem',
+                border: '1px solid rgba(10,10,10,0.15)',
+                color: 'rgba(10,10,10,0.6)',
+                background: 'rgba(10,10,10,0.02)',
+                fontFamily: 'Satoshi, system-ui, sans-serif',
+                fontSize: '0.55rem',
+                letterSpacing: '0.15em',
+                textTransform: 'uppercase',
+                fontWeight: 600,
+                padding: '0.45rem 0.9rem',
+                textDecoration: 'none',
+                transition: 'background 0.2s, color 0.2s, border-color 0.2s',
+              }}
+              onMouseEnter={(e) => {
+                const el = e.currentTarget;
+                el.style.background = 'rgba(10,10,10,0.06)';
+                el.style.color = 'rgba(10,10,10,0.9)';
+                el.style.borderColor = 'rgba(10,10,10,0.4)';
+              }}
+              onMouseLeave={(e) => {
+                const el = e.currentTarget;
+                el.style.background = 'rgba(10,10,10,0.02)';
+                el.style.color = 'rgba(10,10,10,0.6)';
+                el.style.borderColor = 'rgba(10,10,10,0.15)';
+              }}
+            >
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+              </svg>
+              GitHub
+            </a>
+          )}
+          {'deployed' in exp && exp.deployed && (
+            <a
+              href={exp.deployed}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.4rem',
+                border: '1px solid rgba(16,185,129,0.3)',
+                color: 'rgba(16,185,129,0.85)',
+                background: 'rgba(16,185,129,0.03)',
+                fontFamily: 'Satoshi, system-ui, sans-serif',
+                fontSize: '0.55rem',
+                letterSpacing: '0.15em',
+                textTransform: 'uppercase',
+                fontWeight: 600,
+                padding: '0.45rem 0.9rem',
+                textDecoration: 'none',
+                transition: 'background 0.2s, color 0.2s, border-color 0.2s',
+              }}
+              onMouseEnter={(e) => {
+                const el = e.currentTarget;
+                el.style.background = 'rgba(16,185,129,0.1)';
+                el.style.color = 'rgba(52,211,153,1)';
+                el.style.borderColor = 'rgba(16,185,129,0.65)';
+              }}
+              onMouseLeave={(e) => {
+                const el = e.currentTarget;
+                el.style.background = 'rgba(16,185,129,0.03)';
+                el.style.color = 'rgba(16,185,129,0.85)';
+                el.style.borderColor = 'rgba(16,185,129,0.3)';
+              }}
+            >
+              Live Demo
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+              </svg>
+            </a>
+          )}
+        </motion.div>
+      )}
       </motion.div>
     </motion.div>
   );
@@ -285,6 +378,93 @@ function DesktopPanel({
               </span>
             ))}
           </div>
+
+          {/* CTA Buttons */}
+          {('github' in exp && exp.github || 'deployed' in exp && exp.deployed) && (
+            <div className="panel-buttons flex flex-wrap gap-2.5 mt-5">
+              {'github' in exp && exp.github && (
+                <a
+                  href={exp.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition-all duration-300 cursor-pointer"
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '0.4rem',
+                    border: '1px solid rgba(10,10,10,0.15)',
+                    background: 'rgba(10,10,10,0.02)',
+                    color: 'rgba(10,10,10,0.6)',
+                    fontFamily: 'Satoshi, system-ui, sans-serif',
+                    fontSize: '0.55rem',
+                    letterSpacing: '0.15em',
+                    textTransform: 'uppercase',
+                    fontWeight: 600,
+                    padding: '0.45rem 0.9rem',
+                    textDecoration: 'none',
+                  }}
+                  onMouseEnter={(e) => {
+                    const el = e.currentTarget;
+                    el.style.background = 'rgba(10,10,10,0.06)';
+                    el.style.color = 'rgba(10,10,10,0.9)';
+                    el.style.borderColor = 'rgba(10,10,10,0.4)';
+                  }}
+                  onMouseLeave={(e) => {
+                    const el = e.currentTarget;
+                    el.style.background = 'rgba(10,10,10,0.02)';
+                    el.style.color = 'rgba(10,10,10,0.6)';
+                    el.style.borderColor = 'rgba(10,10,10,0.15)';
+                  }}
+                >
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+                  </svg>
+                  GitHub
+                </a>
+              )}
+              {'deployed' in exp && exp.deployed && (
+                <a
+                  href={exp.deployed}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition-all duration-300 cursor-pointer"
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '0.4rem',
+                    border: '1px solid rgba(16,185,129,0.3)',
+                    background: 'rgba(16,185,129,0.03)',
+                    color: 'rgba(16,185,129,0.85)',
+                    fontFamily: 'Satoshi, system-ui, sans-serif',
+                    fontSize: '0.55rem',
+                    letterSpacing: '0.15em',
+                    textTransform: 'uppercase',
+                    fontWeight: 600,
+                    padding: '0.45rem 0.9rem',
+                    textDecoration: 'none',
+                  }}
+                  onMouseEnter={(e) => {
+                    const el = e.currentTarget;
+                    el.style.background = 'rgba(16,185,129,0.1)';
+                    el.style.color = 'rgba(16,185,129,0.95)';
+                    el.style.borderColor = 'rgba(16,185,129,0.65)';
+                  }}
+                  onMouseLeave={(e) => {
+                    const el = e.currentTarget;
+                    el.style.background = 'rgba(16,185,129,0.03)';
+                    el.style.color = 'rgba(16,185,129,0.85)';
+                    el.style.borderColor = 'rgba(16,185,129,0.3)';
+                  }}
+                >
+                  Live Demo
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <line x1="7" y1="17" x2="17" y2="7"></line>
+                    <polyline points="7 7 17 7 17 17"></polyline>
+                  </svg>
+                </a>
+              )}
+            </div>
+          )}
         </div>
       </div>
     </div>
@@ -368,6 +548,7 @@ export function Internship() {
         const role    = panel.querySelector('.panel-role');
         const bullets = Array.from(panel.querySelectorAll('.panel-bullets li'));
         const stack   = panel.querySelector('.panel-stack');
+        const buttons = panel.querySelector('.panel-buttons');
         const topRow  = panel.querySelector('.panel-top');
 
         if (!year || !divider || !company || !role || !stack || !topRow) return;
@@ -380,6 +561,7 @@ export function Internship() {
         gsap.set(role,     { opacity: 0, y: 28 });
         gsap.set(bullets,  { opacity: 0, x: -12 });
         gsap.set(stack,    { opacity: 0, y: 10 });
+        if (buttons) gsap.set(buttons, { opacity: 0, y: 10 });
 
         const stConfig = i === 0
           ? { trigger: pin,                  start: 'top 80%',  toggleActions: 'play none none none' }
@@ -393,6 +575,9 @@ export function Internship() {
           .to(role,    { opacity: 1, y: 0,  duration: 0.75 }, '-=0.3')
           .to(bullets, { opacity: 1, x: 0,  duration: 0.5, stagger: 0.07 }, '-=0.45')
           .to(stack,   { opacity: 1, y: 0,  duration: 0.4  }, '-=0.25');
+        if (buttons) {
+          tl.to(buttons, { opacity: 1, y: 0, duration: 0.4 }, '-=0.25');
+        }
       });
 
     }, sectionRef);

@@ -57,6 +57,12 @@ Core Concepts: Data Structures and Algorithms, Object-Oriented Programming, DBMS
 
 PROJECTS PORTFOLIO
 
+CarbonMitra – Sustainability Analytics Platform, 2026.
+A full-stack sustainability platform that enables users and organizations to monitor, analyze, and reduce their carbon footprint. Users can log daily activities across transportation, electricity, food, and shopping categories, track emissions, set sustainability goals, and receive AI-powered recommendations (via Cohere AI) to adopt eco-friendly habits. Built using React, Spring Boot, PostgreSQL, Redis, and geolocation services.
+
+Enterprise Visitor Management System, 2025.
+A modern visitor check-in, tracking, and authorization system designed for corporate enterprise environments during his Software Engineering internship at India Glycols Limited. Features include real-time visitor logs, host notifications, and check-in dashboards. Built using React, Node.js, MongoDB, and Tailwind CSS.
+
 Analyzing Urban Growth for Green Space Planning Using GIS, 2026.
 Developed a GIS-based urban growth analysis system using semantic segmentation on satellite imagery. He trained a U-Net deep learning model for land-use classification and built environmental recommendation modules. The system integrates prediction outputs and training curves into an interactive Python-based application using Flask and OpenCV.
 
@@ -150,6 +156,16 @@ To make this complex analysis accessible, he wrapped the machine learning logic 
 
 The system uses OpenCV Haar Cascades for real-time face tracking from a live webcam feed and features a clean, interactive Streamlit interface displaying real-time emotional state probabilities.`;
     }
+    if (q.includes('mitra') || q.includes('carbonmitra') || q.includes('carbon-mitra') || q.includes('sustainability')) {
+      return `Milind built CarbonMitra, a full-stack Sustainability Analytics Platform that enables users and organizations to monitor, analyze, and reduce their carbon footprint.
+      
+Key features include footprint tracking, interactive dashboards, Cohere AI-driven recommendations, and OSRM route optimization. The project is built using React, Spring Boot, PostgreSQL, Redis, and various geolocation and email APIs.`;
+    }
+    if (q.includes('visitor') || q.includes('management') || q.includes('host') || q.includes('check-in') || q.includes('igl') || q.includes('glycols')) {
+      return `Milind built the Enterprise Visitor Management System during his internship at India Glycols Limited. The platform streamlines corporate security workflows by managing real-time visitor logs, check-ins, and security badges.
+      
+The frontend is built with React.js and Tailwind CSS, while the backend runs on Node.js and Express, powered by a MongoDB database.`;
+    }
     if (q.includes('sumopy') || q.includes('mobility') || q.includes('route') || q.includes('dijkstra') || q.includes('path') || q.includes('co2') || q.includes('carbon') || q.includes('sustainable')) {
       return `Milind contributed to SuMoPy, short for Sustainable Mobility with Python, which is a route optimization dashboard aimed at lowering urban carbon emissions. He implemented Dijkstra's and A-Star algorithms to calculate paths by factoring in travel time, distance, and CO2 emissions.
 
@@ -158,11 +174,15 @@ The application includes data visualization dashboards built in Matplotlib to an
     // General projects response
     return `Milind has built several notable systems that bridge machine learning and web development. His primary projects include:
 
-First, a GIS-based urban growth prediction model using U-Net on satellite imagery to optimize green space planning.
+First, CarbonMitra, a full-stack Sustainability Analytics Platform featuring AI recommendations and interactive dashboards.
 
-Second, a real-time facial emotion and mental health early-detection app utilizing custom CNNs and webcam processing in Streamlit.
+Second, an Enterprise Visitor Management System built to handle secure corporate visitor check-ins at India Glycols Limited.
 
-Third, SuMoPy, an eco-friendly route optimizer that uses Dijkstra's and A-Star algorithms to calculate paths minimizing CO2 emissions.`;
+Third, a GIS-based urban growth prediction model using U-Net on satellite imagery to optimize green space planning.
+
+Fourth, a real-time facial emotion and mental health early-detection app utilizing custom CNNs and webcam processing in Streamlit.
+
+Fifth, SuMoPy, an eco-friendly route optimizer that uses Dijkstra's and A-Star algorithms to calculate paths minimizing CO2 emissions.`;
   }
 
   if (q.includes('skill') || q.includes('tech') || q.includes('stack') || q.includes('language') || q.includes('framework') || q.includes('database') || q.includes('tool') || q.includes('python') || q.includes('react') || q.includes('java')) {

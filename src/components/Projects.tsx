@@ -12,6 +12,29 @@ gsap.registerPlugin(ScrollTrigger);
 // ─── Data ─────────────────────────────────────────────────────────────────────
 const PROJECTS = [
   {
+    id: 'carbonmitra',
+    name: 'CarbonMitra – Sustainability Analytics Platform',
+    category: 'Sustainability | AI | Full Stack',
+    tagline: 'Full-stack sustainability platform to monitor, analyze, and reduce carbon footprints with AI-powered recommendations and interactive analytics.',
+    stack: ['React', 'Spring Boot', 'PostgreSQL', 'Redis', 'Cohere AI'],
+    image: '/projects/carbon_mitra.png',
+    year: '2026',
+    github: 'https://github.com/Milindverma24/carbon_tracker',
+    deployed: 'https://carbon-tracker-nine-mu.vercel.app/',
+    detailsLink: '/projects/carbonmitra',
+  },
+  {
+    id: 'visitor-management',
+    name: 'Enterprise Visitor Management System',
+    category: 'Web App / Security / Full Stack',
+    tagline: 'Modern visitor check-in, tracking, and authorization system designed for corporate enterprise environments.',
+    stack: ['React.js', 'Node.js', 'MongoDB', 'Tailwind CSS', 'JWT'],
+    image: '/projects/visitor_management.png',
+    year: '2025',
+    github: 'https://github.com/Milindverma24/visitor-management',
+    deployed: 'https://visitor-management-iota-nine.vercel.app/',
+  },
+  {
     id: 'gis-urban-growth',
     name: 'GIS Urban Growth Analysis',
     category: 'GIS / Deep Learning',
@@ -19,7 +42,8 @@ const PROJECTS = [
     stack: ['Python', 'Deep Learning', 'U-Net', 'OpenCV', 'Flask'],
     image: '/projects/gis_project.jpeg',
     year: '2026',
-    link: 'https://github.com/Milindverma24',
+    github: 'https://github.com/Milindverma24',
+    deployed: 'https://saturn-16-gis.hf.space/',
   },
   {
     id: 'mental-health',
@@ -29,7 +53,8 @@ const PROJECTS = [
     stack: ['Python', 'TensorFlow', 'Keras', 'OpenCV', 'Streamlit'],
     image: '/projects/metal healthdetection.jpeg',
     year: '2025',
-    link: 'https://github.com/Milindverma24',
+    github: 'https://github.com/Milindverma24/Mental-health-detection',
+    deployed: 'https://mental-health-24.streamlit.app/',
   },
   {
     id: 'sumopy',
@@ -39,7 +64,8 @@ const PROJECTS = [
     stack: ['Python', 'Data Analysis', 'NetworkX', 'Matplotlib'],
     image: '/projects/somopy.jpeg',
     year: '2024',
-    link: 'https://github.com/Milindverma24',
+    github: 'https://github.com/Milindverma24/SuMoPy',
+    deployed: 'https://sumopy.vercel.app',
   },
 ] as const;
 
@@ -47,7 +73,7 @@ type Project = (typeof PROJECTS)[number];
 
 // ─── Cube geometry ─────────────────────────────────────────────────────────────
 // Scene 0 = intro, scenes 1–16 = projects
-const SCENE_COUNT = PROJECTS.length + 1;
+const SCENE_COUNT = PROJECTS.length + 2;
 
 // Which of the 6 cube faces is front-facing at each scroll stop
 function faceAtStop(i: number): number {
@@ -320,18 +346,26 @@ function ProjectCard({ project, align }: { project: Project; align: 'left' | 'ri
       </div>
 
       {/* CTA */}
-      {'link' in project && project.link && (
-        <div style={{ display: 'flex', justifyContent: right ? 'flex-end' : 'flex-start' }}>
+      <div
+        style={{
+          display: 'flex',
+          gap: '0.6rem',
+          justifyContent: right ? 'flex-end' : 'flex-start',
+          flexWrap: 'wrap',
+        }}
+      >
+        {'github' in project && project.github && (
           <a
-            href={project.link}
+            href={project.github}
             target="_blank"
             rel="noopener noreferrer"
             style={{
               display: 'inline-flex',
               alignItems: 'center',
               gap: '0.4rem',
-              border: '1px solid rgba(255,255,255,0.14)',
-              color: 'rgba(255,255,255,0.45)',
+              border: '1px solid rgba(255,255,255,0.15)',
+              color: 'rgba(255,255,255,0.5)',
+              background: 'rgba(255,255,255,0.02)',
               fontFamily: 'Satoshi, system-ui, sans-serif',
               fontSize: '0.5rem',
               letterSpacing: '0.2em',
@@ -342,22 +376,176 @@ function ProjectCard({ project, align }: { project: Project; align: 'left' | 'ri
             }}
             onMouseEnter={(e) => {
               const el = e.currentTarget;
-              el.style.background = 'rgba(255,255,255,0.07)';
-              el.style.color = 'rgba(255,255,255,0.9)';
-              el.style.borderColor = 'rgba(255,255,255,0.3)';
+              el.style.background = 'rgba(255,255,255,0.08)';
+              el.style.color = 'rgba(255,255,255,0.95)';
+              el.style.borderColor = 'rgba(255,255,255,0.4)';
             }}
             onMouseLeave={(e) => {
               const el = e.currentTarget;
-              el.style.background = 'transparent';
-              el.style.color = 'rgba(255,255,255,0.45)';
-              el.style.borderColor = 'rgba(255,255,255,0.14)';
+              el.style.background = 'rgba(255,255,255,0.02)';
+              el.style.color = 'rgba(255,255,255,0.5)';
+              el.style.borderColor = 'rgba(255,255,255,0.15)';
             }}
           >
-            View Project
+            <svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+            </svg>
+            GitHub
+          </a>
+        )}
+
+        {'deployed' in project && project.deployed && (
+          <a
+            href={project.deployed}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.4rem',
+              border: '1px solid rgba(16,185,129,0.25)',
+              color: 'rgba(16,185,129,0.8)',
+              background: 'rgba(16,185,129,0.03)',
+              fontFamily: 'Satoshi, system-ui, sans-serif',
+              fontSize: '0.5rem',
+              letterSpacing: '0.2em',
+              textTransform: 'uppercase',
+              padding: '0.5rem 0.9rem',
+              textDecoration: 'none',
+              transition: 'background 0.2s, color 0.2s, border-color 0.2s',
+            }}
+            onMouseEnter={(e) => {
+              const el = e.currentTarget;
+              el.style.background = 'rgba(16,185,129,0.12)';
+              el.style.color = 'rgba(52,211,153,1)';
+              el.style.borderColor = 'rgba(16,185,129,0.65)';
+            }}
+            onMouseLeave={(e) => {
+              const el = e.currentTarget;
+              el.style.background = 'rgba(16,185,129,0.03)';
+              el.style.color = 'rgba(16,185,129,0.8)';
+              el.style.borderColor = 'rgba(16,185,129,0.25)';
+            }}
+          >
+            Live Demo
             <ArrowUpRight size={9} />
           </a>
-        </div>
-      )}
+        )}
+
+
+      </div>
+    </div>
+  );
+}
+
+function GithubCTA({ align }: { align: 'left' | 'right' }) {
+  const right = align === 'right';
+  return (
+    <div
+      style={{
+        padding: '1.75rem 1.5rem',
+        background: 'rgba(12,12,12,0.92)',
+        borderTop: '1px solid rgba(255,255,255,0.07)',
+        borderBottom: '1px solid rgba(255,255,255,0.07)',
+        borderLeft: right ? 'none' : '1px solid rgba(255,255,255,0.07)',
+        borderRight: right ? '1px solid rgba(255,255,255,0.07)' : 'none',
+        textAlign: right ? 'right' : 'left',
+      }}
+    >
+      {/* Accent line */}
+      <div
+        style={{
+          width: '2rem',
+          height: '1px',
+          background: 'rgba(255,255,255,0.5)',
+          marginBottom: '1.1rem',
+          marginLeft: right ? 'auto' : 0,
+        }}
+      />
+
+      {/* GitHub Label */}
+      <p
+        style={{
+          fontFamily: 'Satoshi, system-ui, sans-serif',
+          fontSize: '0.5rem',
+          letterSpacing: '0.28em',
+          textTransform: 'uppercase',
+          color: 'rgba(255,255,255,0.28)',
+          marginBottom: '0.75rem',
+        }}
+      >
+        Open Source&nbsp;·&nbsp;Repositories
+      </p>
+
+      {/* Name */}
+      <h3
+        style={{
+          fontFamily: 'Satoshi, system-ui, sans-serif',
+          fontWeight: 900,
+          fontSize: 'clamp(1.6rem, 2.8vw, 2.4rem)',
+          letterSpacing: '-0.04em',
+          lineHeight: 0.88,
+          color: 'rgba(255,255,255,0.92)',
+          marginBottom: '0.9rem',
+        }}
+      >
+        More Projects
+      </h3>
+
+      {/* Tagline */}
+      <p
+        style={{
+          fontFamily: 'Satoshi, system-ui, sans-serif',
+          fontSize: '0.73rem',
+          lineHeight: 1.7,
+          color: 'rgba(255,255,255,0.32)',
+          marginBottom: '1.5rem',
+        }}
+      >
+        For more projects and full source code, please visit my GitHub repository.
+      </p>
+
+      {/* CTA Button */}
+      <div style={{ display: 'flex', justifyContent: right ? 'flex-end' : 'flex-start' }}>
+        <a
+          href="https://github.com/Milindverma24"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '0.4rem',
+            border: '1px solid rgba(255,255,255,0.15)',
+            color: 'rgba(255,255,255,0.6)',
+            background: 'rgba(255,255,255,0.02)',
+            fontFamily: 'Satoshi, system-ui, sans-serif',
+            fontSize: '0.5rem',
+            letterSpacing: '0.2em',
+            textTransform: 'uppercase',
+            padding: '0.5rem 0.9rem',
+            textDecoration: 'none',
+            transition: 'background 0.2s, color 0.2s, border-color 0.2s',
+          }}
+          onMouseEnter={(e) => {
+            const el = e.currentTarget;
+            el.style.background = 'rgba(255,255,255,0.08)';
+            el.style.color = '#FFF';
+            el.style.borderColor = 'rgba(255,255,255,0.4)';
+          }}
+          onMouseLeave={(e) => {
+            const el = e.currentTarget;
+            el.style.background = 'rgba(255,255,255,0.02)';
+            el.style.color = 'rgba(255,255,255,0.6)';
+            el.style.borderColor = 'rgba(255,255,255,0.15)';
+          }}
+        >
+          <svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+          </svg>
+          Visit GitHub
+          <ArrowUpRight size={9} />
+        </a>
+      </div>
     </div>
   );
 }
@@ -408,7 +596,11 @@ export function Projects() {
           activeSceneRef.current = newScene;
 
           const label =
-            newScene === 0 ? 'OVERVIEW' : PROJECTS[newScene - 1].category.toUpperCase();
+            newScene === 0
+              ? 'OVERVIEW'
+              : newScene <= PROJECTS.length
+              ? PROJECTS[newScene - 1].category.toUpperCase()
+              : 'FOR MORE PROJECTS VISIT GITHUB';
 
           if (hudSceneRef.current) hudSceneRef.current.textContent = label;
           if (captionNumRef.current) {
@@ -425,7 +617,7 @@ export function Projects() {
     return () => trigger.kill();
   }, []);
 
-  const project = activeScene > 0 ? PROJECTS[activeScene - 1] : null;
+  const project = activeScene > 0 && activeScene <= PROJECTS.length ? PROJECTS[activeScene - 1] : null;
   // Odd scenes → left card, even scenes → right card
   const isRight = activeScene > 0 && activeScene % 2 === 0;
 
@@ -618,7 +810,7 @@ export function Projects() {
                       : { inset: 0 }),
                   }}
                 >
-                  {faceImages[fi] !== null && (
+                  {faceImages[fi] !== null ? (
                     <>
                       {/* Fallback index number in the background */}
                       <div className="absolute inset-0 flex items-center justify-center select-none pointer-events-none z-0">
@@ -653,7 +845,51 @@ export function Projects() {
                         }}
                       />
                     </>
-                  )}
+                  ) : fi === 5 ? (
+                    <div 
+                      style={{
+                        position: 'absolute',
+                        inset: 0,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        userSelect: 'none',
+                        padding: '1.5rem',
+                        zIndex: 10,
+                      }}
+                    >
+                      <div 
+                        style={{
+                          width: '3rem',
+                          height: '3rem',
+                          borderRadius: '50%',
+                          background: 'rgba(255,255,255,0.03)',
+                          border: '1px solid rgba(255,255,255,0.1)',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          marginBottom: '0.8rem',
+                        }}
+                      >
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style={{ color: 'rgba(255,255,255,0.35)' }}>
+                          <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+                        </svg>
+                      </div>
+                      <span 
+                        style={{
+                          fontFamily: 'Satoshi, system-ui, sans-serif',
+                          fontSize: '0.45rem',
+                          letterSpacing: '0.25em',
+                          textTransform: 'uppercase',
+                          fontWeight: 700,
+                          color: 'rgba(255,255,255,0.22)',
+                        }}
+                      >
+                        Explore More on GitHub
+                      </span>
+                    </div>
+                  ) : null}
                 </div>
               );
             })}
@@ -671,16 +907,28 @@ export function Projects() {
             }}
           >
             <AnimatePresence mode="wait">
-              {activeScene > 0 && project && (
-                <motion.div
-                  key={`mob-${activeScene}`}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 10 }}
-                  transition={{ duration: 0.32 }}
-                >
-                  <ProjectCard project={project} align="left" />
-                </motion.div>
+              {activeScene > 0 && (
+                project ? (
+                  <motion.div
+                    key={`mob-${activeScene}`}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 10 }}
+                    transition={{ duration: 0.32 }}
+                  >
+                    <ProjectCard project={project} align="left" />
+                  </motion.div>
+                ) : activeScene === PROJECTS.length + 1 ? (
+                  <motion.div
+                    key="mob-github-cta"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 10 }}
+                    transition={{ duration: 0.32 }}
+                  >
+                    <GithubCTA align="left" />
+                  </motion.div>
+                ) : null
               )}
             </AnimatePresence>
           </div>
@@ -877,16 +1125,28 @@ export function Projects() {
           }}
         >
           <AnimatePresence mode="wait">
-            {!isRight && activeScene > 0 && project && (
-              <motion.div
-                key={`left-${activeScene}`}
-                initial={{ opacity: 0, x: -14 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -14 }}
-                transition={{ duration: 0.38 }}
-              >
-                <ProjectCard project={project} align="left" />
-              </motion.div>
+            {!isRight && activeScene > 0 && (
+              project ? (
+                <motion.div
+                  key={`left-${activeScene}`}
+                  initial={{ opacity: 0, x: -14 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -14 }}
+                  transition={{ duration: 0.38 }}
+                >
+                  <ProjectCard project={project} align="left" />
+                </motion.div>
+              ) : activeScene === PROJECTS.length + 1 ? (
+                <motion.div
+                  key="github-cta-left"
+                  initial={{ opacity: 0, x: -14 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -14 }}
+                  transition={{ duration: 0.38 }}
+                >
+                  <GithubCTA align="left" />
+                </motion.div>
+              ) : null
             )}
           </AnimatePresence>
         </div>
@@ -902,16 +1162,28 @@ export function Projects() {
           }}
         >
           <AnimatePresence mode="wait">
-            {isRight && activeScene > 0 && project && (
-              <motion.div
-                key={`right-${activeScene}`}
-                initial={{ opacity: 0, x: 14 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: 14 }}
-                transition={{ duration: 0.38 }}
-              >
-                <ProjectCard project={project} align="right" />
-              </motion.div>
+            {isRight && activeScene > 0 && (
+              project ? (
+                <motion.div
+                  key={`right-${activeScene}`}
+                  initial={{ opacity: 0, x: 14 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: 14 }}
+                  transition={{ duration: 0.38 }}
+                >
+                  <ProjectCard project={project} align="right" />
+                </motion.div>
+              ) : activeScene === PROJECTS.length + 1 ? (
+                <motion.div
+                  key="github-cta-right"
+                  initial={{ opacity: 0, x: 14 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: 14 }}
+                  transition={{ duration: 0.38 }}
+                >
+                  <GithubCTA align="right" />
+                </motion.div>
+              ) : null
             )}
           </AnimatePresence>
         </div>
@@ -929,7 +1201,7 @@ export function Projects() {
               color: 'rgba(255,255,255,0.18)',
             }}
           >
-            {String(activeScene).padStart(2, '0')}&nbsp;/&nbsp;{String(PROJECTS.length).padStart(2, '0')}
+            {String(activeScene).padStart(2, '0')}&nbsp;/&nbsp;{String(PROJECTS.length + 1).padStart(2, '0')}
           </span>
         </div>
 

@@ -6,26 +6,14 @@ import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowDownRight } from 'lucide-react';
-import { animate, createTimeline, scrambleText } from 'animejs';
+
+import { createTimeline, scrambleText } from 'animejs';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const SCRAMBLE_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#@_!∆';
 const EASE = [0.22, 1, 0.36, 1] as const;
 const STACK_TAGS = ['React', 'Node.js', 'Python', 'TensorFlow', 'AWS', 'Docker'];
-
-function runScramble(el: HTMLElement, duration = 900, delay = 0) {
-  animate(el, {
-    innerHTML: scrambleText({
-      chars: SCRAMBLE_CHARS,
-      duration,
-      delay,
-      perturbation: 0.18,
-      cursor: '█▓▒░',
-      settleDuration: 280,
-    }),
-  });
-}
 
 export function Hero() {
   const containerRef = useRef<HTMLElement>(null);
@@ -94,19 +82,34 @@ export function Hero() {
   return (
     <section
       ref={containerRef}
-      className="relative w-full min-h-screen bg-white overflow-hidden flex flex-col"
+      className="relative w-full min-h-screen bg-[#0A0A0A] overflow-hidden flex flex-col"
     >
       {/* Background Image */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
         <Image
-          src="/logo/background.png"
+          src="/logo/background.jpg"
           alt="Hero Background"
           fill
           priority
-          className="object-cover"
+          className="object-cover hero-bg-image"
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-white/15" />
+        {/* Mobile dark overlay (fades to black at the bottom) */}
+        <div 
+          className="absolute inset-0 z-5 block md:hidden"
+          style={{
+            background: 'linear-gradient(to bottom, rgba(10,10,10,0.1) 0%, rgba(10,10,10,0.85) 60%, rgba(10,10,10,0.98) 100%)',
+            zIndex: 5,
+          }}
+        />
+        {/* Desktop dark overlay (spotlight on the right, fades to black on the left) */}
+        <div 
+          className="absolute inset-0 z-5 hidden md:block"
+          style={{
+            background: 'radial-gradient(circle at 72% 40%, rgba(10,10,10,0) 0%, rgba(10,10,10,0.88) 55%, rgba(10,10,10,0.98) 100%)',
+            zIndex: 5,
+          }}
+        />
       </div>
 
       {/* Content */}

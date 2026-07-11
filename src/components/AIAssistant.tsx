@@ -151,17 +151,18 @@ export function AIAssistant() {
 
       const reader  = res.body.getReader();
       const decoder = new TextDecoder();
-      let reply = '';
+      const buffer = { text: '' };
 
       setMessages((prev) => [...prev, { role: 'assistant', content: '' }]);
 
       while (true) {
         const { done, value } = await reader.read();
         if (done) break;
-        reply += decoder.decode(value, { stream: true });
+        buffer.text += decoder.decode(value, { stream: true });
+        const currentReply = buffer.text;
         setMessages((prev) => {
           const updated = [...prev];
-          updated[updated.length - 1] = { role: 'assistant', content: reply };
+          updated[updated.length - 1] = { role: 'assistant', content: currentReply };
           return updated;
         });
       }
@@ -184,7 +185,7 @@ export function AIAssistant() {
       <motion.button
         data-cursor="ask"
         onClick={() => setOpen(true)}
-        className="fixed bottom-8 left-8 z-50 flex items-center gap-3 text-white"
+        className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-50 flex items-center gap-3 text-white"
         style={{
           background: '#0a0a0a',
           border: '1px solid rgba(255,255,255,0.12)',
@@ -309,7 +310,7 @@ export function AIAssistant() {
                           margin: 0,
                         }}
                       >
-                        Milind's AI
+                        Milind&apos;s AI
                       </p>
                       {/* Live dot */}
                       <span style={{ position: 'relative', display: 'inline-flex', width: 5, height: 5 }}>
@@ -399,7 +400,7 @@ export function AIAssistant() {
                           margin: 0,
                         }}
                       >
-                        Hello. I'm Milind's AI assistant — I know his full engineering history, every project he's shipped, and what he's currently building.
+                        Hello. I&apos;m Milind&apos;s AI assistant — I know his full engineering history, every project he&apos;s shipped, and what he&apos;s currently building.
                       </p>
                       <p
                         style={{
