@@ -835,6 +835,7 @@ export function Projects() {
                         className="object-cover z-10"
                         quality={90}
                         sizes="(max-width: 768px) 90vw, 1400px"
+                        priority
                       />
                       <div
                         style={{
